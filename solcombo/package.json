@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dialectlabs/blockchain-sdk-solana": "^1.0.1",
+    "@dialectlabs/react-sdk-blockchain-solana": "^1.0.0-beta.4",
+    "@dialectlabs/react-ui": "^1.1.0-beta.13",
+    "@dialectlabs/sdk": "^1.5.2",
     "@next/font": "13.1.2",
     "@solana/wallet-adapter-phantom": "^0.9.19",
     "@solana/wallet-adapter-react": "^0.15.28",
