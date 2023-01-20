@@ -1,7 +1,9 @@
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Navigation = () => {
+  const router = useRouter();
   const navigationItems = [
     {
       label: "How It Works",
@@ -25,7 +27,7 @@ const Navigation = () => {
       {navigationItems.map((item) => (
         <li key={item.label} className="flex-1 mr-2">
           <Link
-            className="text-center block rounded py-4 px-4 text-black"
+            className={`text-center ${router.pathname === item.href ? 'font-bold' : 'font-normal'} block rounded py-4 px-4 text-black`}
             href={item.href}
           >
             {item.label}
