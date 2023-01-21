@@ -12,6 +12,7 @@ export default async function handler(
   const address = req.query.address;
   try {
     const { db } = await connectToDatabase();
+    db.proxy.createIndex( { "address" : 1 }, { unique : true } )
     const userAccountCollection = db.collection('userAccount');
     await userAccountCollection.insertOne({
         address

@@ -8,8 +8,8 @@ export default function Home() {
   const { publicKey } = useWallet();
 
   useEffect(() => {
-
-  }, [])
+    if (publicKey) fetch(`/api/createuser/${publicKey}`);
+  }, [publicKey])
 
   return (
     <div className="flex w-3/4 h-screen">
