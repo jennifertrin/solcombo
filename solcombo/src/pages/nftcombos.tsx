@@ -88,30 +88,15 @@ export default function NftCombos() {
   }
 
   return (
-    <div className="flex w-screen h-screen">
-      <div className="bg-white m-auto px-12 py-8 rounded-lg flex flex-col gap-2 font-body">
+    <div className="flex w-1/2 h-screen">
+      <div className="bg-white ml-6 my-auto px-12 py-8 rounded-lg flex flex-col gap-2 font-body">
         <span className="flex text-xl text-bold">
-          The Froots - Cyber Samurai Collaboration
+          Chat with a Cyber Samurai Owner!
         </span>
         <span className="flex text-md text-black mb-4">
-          Click on a collection to find a member to chat with!
+          Click on Cyber Samuari to find a member to chat with!
         </span>
         <div className="flex flex-row gap-4">
-          <div className="flex bg-slate-100 max-w-md cursor-pointer w-64 h-64 m-auto rounded overflow-hidden shadow-lg">
-            <div className="w-full px-6 py-4 cursor-pointer">
-              <div className="font-bold text-center text-xl mb-2 mx-auto">
-                Froots Collection
-              </div>
-              <Image
-                src="/FrootsLogo.jpeg"
-                alt="Froots Logo"
-                className="mx-auto"
-                width="160"
-                height="160"
-              />
-              <p className="text-gray-700 text-base"></p>
-            </div>
-          </div>
           <div
             className="flex flex-col cursor-pointer"
             onClick={() => setShowInputs(!showInputs)}
@@ -132,10 +117,10 @@ export default function NftCombos() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col font-body w-1/4 mx-auto">
+      <div className="flex flex-col font-body mx-auto">
         <div className="flex justify-center">
           {showInputs ? (
-            <div className="font-body align-left mb-4">
+            <div className="font-body align-left text-xl mb-4 mt-6">
               Choose list of users:
               <div className="form-check">
                 <input
