@@ -17,11 +17,11 @@ export default function ListInstructions() {
       <div className="flex text-md">
         Note: You can only win one prize per combo.
       </div>
-      <Link href="/nftcombos" className="mx-auto">
+      <a href="/nftcombos" className="mx-auto">
         <button className="bg-purple-300 hover:bg-purple-400 text-white font-bold py-2 px-4 rounded w-64">
           Explore NFT Combos
         </button>
-      </Link>
+      </a>
     </div>
   );
 }

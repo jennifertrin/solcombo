@@ -1,6 +1,7 @@
 import { BottomChat } from '@dialectlabs/react-ui';
 import Header from './Header';
 import Navigation from './Navigation';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 export default function Layout({ children } : React.PropsWithChildren<{}>) {
   return (

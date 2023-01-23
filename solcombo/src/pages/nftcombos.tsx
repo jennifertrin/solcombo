@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import {
-  CreateThreadCommand,
-  Dialect,
+  // CreateThreadCommand,
+  // Dialect,
   DialectCloudEnvironment,
-  DialectSdk,
-  ThreadMemberScope,
+  // DialectSdk,
+  // ThreadMemberScope,
 } from "@dialectlabs/sdk";
-import {
-  NodeDialectSolanaWalletAdapter,
-  Solana,
-  SolanaSdkFactory,
-} from "@dialectlabs/blockchain-sdk-solana";
-import { useWallet } from "@solana/wallet-adapter-react";
+// import {
+//   NodeDialectSolanaWalletAdapter,
+//   Solana,
+//   SolanaSdkFactory,
+// } from "@dialectlabs/blockchain-sdk-solana";
 
 export default function NftCombos() {
-  const { publicKey } = useWallet();
-
-  useEffect(() => {
-    if (!publicKey) return;
-  }, [publicKey])
-  
   const [cyberSamuariOwners, setCyberSamuariOwners] =
     useState<any[] | undefined>();
   const [showCyberSamuariOwners, setShowCyberSamuariOwners] =
@@ -37,7 +30,7 @@ export default function NftCombos() {
     getSamuariOwners();
   }, []);
 
-  const environment: DialectCloudEnvironment = "development";
+  // const environment: DialectCloudEnvironment = "development";
 
   // async function createThread(recipient: string) {
   //   const sdk: DialectSdk<Solana> = Dialect.sdk(
