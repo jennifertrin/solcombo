@@ -25,6 +25,12 @@ export default function NftCombos() {
   ] = useState<boolean>(false);
   const [cyberSamuariOwnersWithMostSales, setCyberSamuariOwnersWithMostSales] =
     useState<any[] | undefined>();
+  const [
+    showCyberSamuariOwnersWithMost,
+    setShowCyberSamuariOwnersWithMost,
+  ] = useState<boolean>(false);
+  const [cyberSamuariOwnersWithMost, setCyberSamuariOwnersWithMost] =
+    useState<any[] | undefined>();
 
   useEffect(() => {
     async function getSamuariOwners() {
@@ -49,6 +55,19 @@ export default function NftCombos() {
       getSamuariOwnersWithMostSales();
     }
   }, [showCyberSamuariOwnersWithMostSales]);
+
+  useEffect(() => {
+    async function getSamuariOwnersWithMost() {
+      const cyberSamuariOwners = await fetch(
+        "https://node-api.flipsidecrypto.com/api/v2/queries/64b7f26f-81a5-45b1-99a2-27c5cfce8ea6/data/latest"
+      ).then((response) => response.json());
+      if (cyberSamuariOwners.length > 0)
+        setCyberSamuariOwnersWithMost(cyberSamuariOwners);
+    }
+    if (showCyberSamuariOwnersWithMost) {
+     getSamuariOwnersWithMost();
+    }
+  }, [showCyberSamuariOwnersWithMost]);
 
   const environment: DialectCloudEnvironment = "development";
 
@@ -130,6 +149,7 @@ export default function NftCombos() {
                   id="flexRadioDefault1"
                   onChange={() => {
                     setShowCyberSamuariOwnersWithMostSales(true);
+                    setShowCyberSamuariOwnersWithMost(false);
                     setShowCyberSamuariOwners(false);
                   }}
                 ></input>
@@ -144,7 +164,24 @@ export default function NftCombos() {
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
                   onChange={() => {
+                    setShowCyberSamuariOwners(false);
+                    setShowCyberSamuariOwnersWithMost(true);
+                    setShowCyberSamuariOwnersWithMostSales(false);
+                  }}
+                ></input>
+                <label className="form-check-label inline-block text-gray-800">
+                  Most Cyber Samuari Owned
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault2"
+                  onChange={() => {
                     setShowCyberSamuariOwners(true);
+                    setShowCyberSamuariOwnersWithMost(false);
                     setShowCyberSamuariOwnersWithMostSales(false);
                   }}
                 ></input>
@@ -241,6 +278,65 @@ export default function NftCombos() {
                         </td>
                         <td className="flex text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                           {owner.NUMBER_OF_SALES}
+                        </td>
+                        <td
+                          className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                          onClick={() => createThread(owner.PURCHASER)}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            className="w-6 h-6 cursor-pointer"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"
+                            />
+                          </svg>
+                        </td>
+                      </div>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      ) : null}
+      {showCyberSamuariOwnersWithMost ? (
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full">
+                <thead className="border-b">
+                  <span className="font-body text-lg">
+                    Cyber Samuari Owners With Most Cyber Samuari Owned
+                  </span>
+                  <tr>
+                    <th
+                      scope="col"
+                      className="text-sm font-medium text-gray-900 py-4 text-left"
+                    >
+                      Wallet Address / Number of Owned
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="flex flex-col max-h-sm h-1/2 overflow-y-auto border-b">
+                    {cyberSamuariOwnersWithMost?.map((owner) => (
+                      <div
+                        key={owner.PURCHASER}
+                        className="w-full space-between flex flex-row"
+                      >
+                        <td className="flex text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        {owner.PURCHASER.slice(0,5)+ '...' + owner.PURCHASER.slice(owner.PURCHASER.length - 5, owner.PURCHASER.length)}
+                        </td>
+                        <td className="flex text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          {owner.NUMBER_OF_NFTS_OWNED}
                         </td>
                         <td
                           className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
