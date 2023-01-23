@@ -10,16 +10,8 @@ const Navigation = () => {
       href: "/howitworks",
     },
     {
-      label: "Analytics",
-      href: "/analytics",
-    },
-    {
       label: "NFT Combos",
       href: "/nftcombos",
-    },
-    {
-      label: "Token Combos",
-      href: "/tokencombos",
     },
   ];
   return (
