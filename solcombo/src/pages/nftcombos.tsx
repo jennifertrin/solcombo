@@ -39,32 +39,32 @@ export default function NftCombos() {
 
   const environment: DialectCloudEnvironment = "development";
 
-  async function createThread(recipient: string) {
-    const sdk: DialectSdk<Solana> = Dialect.sdk(
-      {
-        environment,
-      },
-      SolanaSdkFactory.create({
-        // IMPORTANT: must set environment variable DIALECT_SDK_CREDENTIALS
-        // to your dapp's Solana messaging wallet keypair e.g. [170,23, . . . ,300]
-        wallet: NodeDialectSolanaWalletAdapter.create(),
-      })
-    );
-    const command: CreateThreadCommand = {
-      encrypted: false,
-      me: {
-        scopes: [ThreadMemberScope.ADMIN, ThreadMemberScope.WRITE],
-      },
-      otherMembers: [
-        {
-          address: recipient,
-          scopes: [ThreadMemberScope.ADMIN, ThreadMemberScope.WRITE],
-        },
-      ],
-    };
-    const thread = await sdk.threads.create(command);
-    return thread;
-  }
+  // async function createThread(recipient: string) {
+  //   const sdk: DialectSdk<Solana> = Dialect.sdk(
+  //     {
+  //       environment,
+  //     },
+  //     SolanaSdkFactory.create({
+  //       // IMPORTANT: must set environment variable DIALECT_SDK_CREDENTIALS
+  //       // to your dapp's Solana messaging wallet keypair e.g. [170,23, . . . ,300]
+  //       wallet: NodeDialectSolanaWalletAdapter.create(),
+  //     })
+  //   );
+  //   const command: CreateThreadCommand = {
+  //     encrypted: false,
+  //     me: {
+  //       scopes: [ThreadMemberScope.ADMIN, ThreadMemberScope.WRITE],
+  //     },
+  //     otherMembers: [
+  //       {
+  //         address: recipient,
+  //         scopes: [ThreadMemberScope.ADMIN, ThreadMemberScope.WRITE],
+  //       },
+  //     ],
+  //   };
+  //   const thread = await sdk.threads.create(command);
+  //   return thread;
+  // }
 
   return (
     <div className="flex w-screen h-screen">
@@ -127,7 +127,7 @@ export default function NftCombos() {
                               </td>
                               <td
                                 className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                onClick={() => createThread(owner.PURCHASER)}
+                                // onClick={() => createThread(owner.PURCHASER)}
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
