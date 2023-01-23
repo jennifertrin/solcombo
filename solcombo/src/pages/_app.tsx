@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
     useState<DialectSolanaWalletAdapter | null>(null);
   
   const dialectConfig: ConfigProps = useMemo(() => ({
-    environment: 'production',
+    environment: 'development',
     dialectCloud: {
       tokenStore: 'local-storage',
     }
