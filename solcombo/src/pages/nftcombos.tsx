@@ -18,8 +18,6 @@ export default function NftCombos() {
 
   const solanaWallet = useWallet();
 
-  console.log('solanaWallet', solanaWallet);
-
   const [cyberSamuariOwners, setCyberSamuariOwners] =
     useState<any[] | undefined>();
   const [showCyberSamuariOwners, setShowCyberSamuariOwners] =
@@ -75,10 +73,12 @@ export default function NftCombos() {
 
   return (
     <div className="flex w-screen h-screen">
-      <div className="mx-auto flex flex-row gap-4 font-body">
-        <div className="flex max-w-md w-64 h-64 m-auto rounded overflow-hidden shadow-lg">
-          <div className="px-6 py-4 cursor-pointer">
-            <div className="font-bold text-xl mb-2 mx-auto">
+      <div className="bg-white m-auto px-12 py-8 rounded-lg flex flex-col gap-4 font-body">
+      <span className="flex text-xl text-bold">The Froots - Cyber Samurai Collaboration</span>
+      <div className="flex flex-row gap-4">
+        <div className="flex bg-slate-100 max-w-md cursor-pointer w-64 h-64 m-auto rounded overflow-hidden shadow-lg">
+          <div className="w-full px-6 py-4 cursor-pointer">
+            <div className="font-bold text-center text-xl mb-2 mx-auto">
               Froots Collection
             </div>
             <Image
@@ -91,12 +91,11 @@ export default function NftCombos() {
             <p className="text-gray-700 text-base"></p>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col cursor-pointer" onClick={() => setShowCyberSamuariOwners(!showCyberSamuariOwners)}>
           <div
-            className="px-6 py-4 max-w-md m-auto cursor-pointer w-64 h-64 rounded overflow-hidden shadow-lg"
-            onClick={() => setShowCyberSamuariOwners(!showCyberSamuariOwners)}
+            className="px-6 py-4 bg-slate-100 max-w-md m-auto cursor-pointer w-64 h-64 rounded overflow-hidden shadow-lg"
           >
-            <div className="font-bold text-xl mb-2 mx-auto">Cyber Samurai</div>
+            <div className="text-center font-bold text-xl mb-2 mx-auto">Cyber Samurai</div>
             <Image
               src="/CyberSamuraiLogo.jpeg"
               alt="Cyber Samurai Logo"
@@ -161,6 +160,7 @@ export default function NftCombos() {
               </div>
             </div>
           ) : null}
+        </div>
         </div>
       </div>
     </div>
