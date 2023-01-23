@@ -10,7 +10,7 @@ export const solanaWalletToDialectWallet = (
     wallet.disconnecting ||
     !wallet.publicKey
   ) {
-    return null;
+   return null
   }
 
   return {

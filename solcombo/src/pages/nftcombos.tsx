@@ -1,23 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import {
-  // CreateThreadCommand,
-  // Dialect,
+  CreateThreadCommand,
+  Dialect,
   DialectCloudEnvironment,
-  // DialectSdk,
-  // ThreadMemberScope,
+  DialectSdk,
+  ThreadMemberScope,
 } from "@dialectlabs/sdk";
-// import {
-//   NodeDialectSolanaWalletAdapter,
-//   Solana,
-//   SolanaSdkFactory,
-// } from "@dialectlabs/blockchain-sdk-solana";
+import {
+  Solana,
+  SolanaSdkFactory,
+} from "@dialectlabs/blockchain-sdk-solana";
+import { solanaWalletToDialectWallet } from "@/util/SolanaToDialect";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 export default function NftCombos() {
+
+  const solanaWallet = useWallet();
+
+  console.log('solanaWallet', solanaWallet);
+
   const [cyberSamuariOwners, setCyberSamuariOwners] =
     useState<any[] | undefined>();
   const [showCyberSamuariOwners, setShowCyberSamuariOwners] =
-    useState<boolean>(false); 
+    useState<boolean>(false);
 
   useEffect(() => {
     async function getSamuariOwners() {
@@ -30,34 +36,42 @@ export default function NftCombos() {
     getSamuariOwners();
   }, []);
 
-  // const environment: DialectCloudEnvironment = "development";
+  const environment: DialectCloudEnvironment = "development";
 
-  // async function createThread(recipient: string) {
-  //   const sdk: DialectSdk<Solana> = Dialect.sdk(
-  //     {
-  //       environment,
-  //     },
-  //     SolanaSdkFactory.create({
-  //       // IMPORTANT: must set environment variable DIALECT_SDK_CREDENTIALS
-  //       // to your dapp's Solana messaging wallet keypair e.g. [170,23, . . . ,300]
-  //       wallet: NodeDialectSolanaWalletAdapter.create(),
-  //     })
-  //   );
-  //   const command: CreateThreadCommand = {
-  //     encrypted: false,
-  //     me: {
-  //       scopes: [ThreadMemberScope.ADMIN, ThreadMemberScope.WRITE],
-  //     },
-  //     otherMembers: [
-  //       {
-  //         address: recipient,
-  //         scopes: [ThreadMemberScope.ADMIN, ThreadMemberScope.WRITE],
-  //       },
-  //     ],
-  //   };
-  //   const thread = await sdk.threads.create(command);
-  //   return thread;
-  // }
+  const sdk: DialectSdk<Solana> | undefined = useMemo(() => {
+    const solanaToDialect = solanaWalletToDialectWallet(solanaWallet);
+    if (!solanaToDialect) return;
+    return Dialect.sdk(
+      {
+        environment,
+      },
+      SolanaSdkFactory.create({
+        wallet: solanaToDialect,
+      })
+    );
+  }, [solanaWallet])
+
+  async function createThread(recipient: string) {
+    const command: CreateThreadCommand = {
+      encrypted: false,
+      me: {
+        scopes: [ThreadMemberScope.ADMIN, ThreadMemberScope.WRITE],
+      },
+      otherMembers: [
+        {
+          address: recipient,
+          scopes: [ThreadMemberScope.ADMIN, ThreadMemberScope.WRITE],
+        },
+      ],
+    };
+    try {
+    const thread = await sdk?.threads.create(command);
+    return thread;
+    } catch(e) {
+      alert(`${e}`);
+      console.log('Error:', e);
+    }
+  }
 
   return (
     <div className="flex w-screen h-screen">
@@ -113,14 +127,14 @@ export default function NftCombos() {
                           {cyberSamuariOwners?.map((owner) => (
                             <div
                               key={owner.PURCHASER}
-                              className="flex flex-row"
+                              className="w-full space-between flex flex-row"
                             >
                               <td className="flex text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {owner.PURCHASER}
                               </td>
                               <td
                                 className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                // onClick={() => createThread(owner.PURCHASER)}
+                                onClick={() => createThread(owner.PURCHASER)}
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
