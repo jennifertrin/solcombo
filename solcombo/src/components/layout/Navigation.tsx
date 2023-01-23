@@ -6,10 +6,6 @@ const Navigation = () => {
   const router = useRouter();
   const navigationItems = [
     {
-      label: "How It Works",
-      href: "/howitworks",
-    },
-    {
       label: "NFT Combos",
       href: "/nftcombos",
     },
