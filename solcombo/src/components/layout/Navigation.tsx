@@ -13,6 +13,10 @@ const Navigation = () => {
       label: "NFT Combos",
       href: "/nftcombos",
     },
+    {
+      label: "Analytics",
+      href: "/analytics"
+    }
   ];
   return (
     <ul className="flex flex-col w-1/4 h-1/3 bg-white font-body text-xl tracking-wider my-auto ml-0 md:ml-24">
