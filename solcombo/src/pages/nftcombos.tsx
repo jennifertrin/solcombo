@@ -198,7 +198,7 @@ export default function NftCombos() {
           ) : null}
         </div>
         {showCyberSamuariOwners ? (
-          <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="h-64 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
                 <table className="min-w-full">
@@ -254,7 +254,7 @@ export default function NftCombos() {
           </div>
         ) : null}
         {showCyberSamuariOwnersWithMostSales ? (
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="h-64 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden">
               <table className="min-w-full">
@@ -313,7 +313,7 @@ export default function NftCombos() {
         </div>
       ) : null}
       {showCyberSamuariOwnersWithMost ? (
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="h-64 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden">
               <table className="min-w-full">
