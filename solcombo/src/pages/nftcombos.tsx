@@ -136,7 +136,7 @@ export default function NftCombos() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col font-body mx-auto">
+      <div className="flex flex-col font-body mx-auto ml-8">
         <div className="flex justify-center">
           {showInputs ? (
             <div className="font-body align-left text-xl mb-4 mt-6">
