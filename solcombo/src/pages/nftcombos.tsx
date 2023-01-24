@@ -118,7 +118,12 @@ export default function NftCombos() {
         <div className="flex flex-row gap-4">
           <div
             className="flex flex-col cursor-pointer"
-            onClick={() => setShowInputs(!showInputs)}
+            onClick={() => {
+              setShowCyberSamuariOwnersWithMostSales(false);
+              setShowCyberSamuariOwnersWithMost(false);
+              setShowCyberSamuariOwners(false);
+              setShowInputs(!showInputs)
+            }}
           >
             <div className="px-6 py-4 bg-slate-100 max-w-md m-auto cursor-pointer w-64 h-64 rounded overflow-hidden shadow-lg">
               <div className="text-center font-bold text-xl mb-2 mx-auto">
@@ -136,7 +141,7 @@ export default function NftCombos() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col font-body mx-auto ml-8">
+      <div className="w-2/3 flex flex-col font-body m-auto ml-8">
         <div className="flex justify-center">
           {showInputs ? (
             <div className="font-body align-left text-xl mb-4 mt-6">
@@ -154,7 +159,7 @@ export default function NftCombos() {
                   }}
                 ></input>
                 <label className="form-check-label inline-block text-gray-800">
-                  Cyber Samuari Owners with Most Sales
+                  Owners with Most Sales
                 </label>
               </div>
               <div className="form-check">
@@ -170,7 +175,7 @@ export default function NftCombos() {
                   }}
                 ></input>
                 <label className="form-check-label inline-block text-gray-800">
-                  Most Cyber Samuari Owned
+                  Most Cyber Samuaris Owned
                 </label>
               </div>
               <div className="form-check">
